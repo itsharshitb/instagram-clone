@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import "./App.css";
 import Post from "./Post";
 import { db, auth } from "./firebase";
 import { Input } from "@mui/material";
+import ImageUpload from "./ImageUpload"
 
 function App() {
   const style = {
@@ -79,6 +79,7 @@ function App() {
 
   return (
     <div className="app">
+      <ImageUpload />
       {/* {header} */}
       <Modal open={open} onClose={() => setOpen(false)}>
         <Box sx={style}>
