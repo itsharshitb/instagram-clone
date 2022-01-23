@@ -79,7 +79,12 @@ function App() {
 
   return (
     <div className="app">
-      <ImageUpload />
+      {user?.displayName?(
+        <ImageUpload username={user.displayName}/>
+      ):(
+        <h3>Sorry ypou need to login to upload</h3>
+      )}
+      
       {/* {header} */}
       <Modal open={open} onClose={() => setOpen(false)}>
         <Box sx={style}>
