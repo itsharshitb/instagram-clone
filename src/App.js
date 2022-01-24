@@ -7,6 +7,7 @@ import Post from "./Post";
 import { db, auth } from "./firebase";
 import { Input } from "@mui/material";
 import ImageUpload from "./ImageUpload";
+import InstagramEmbed from "react-instagram-embed";
 
 function App() {
   const style = {
@@ -67,6 +68,7 @@ function App() {
         });
       })
       .catch((error) => alert(error.message));
+    setOpen(false);
   };
 
   const signIn = (event) => {
@@ -161,15 +163,32 @@ function App() {
       </div>
       {/* {posts} */}
       <div className="app_posts">
-        {posts.map(({ id, post }) => (
-          <Post
-            key={id}
-            username={post.username}
-            caption={post.caption}
-            imageUrl={post.imageUrl}
-          />
-        ))}
+        <div className="app_postLeft">
+          {posts.map(({ id, post }) => (
+            <Post
+              key={id}
+              username={post.username}
+              caption={post.caption}
+              imageUrl={post.imageUrl}
+            />
+          ))}
+        </div>
+        <div className="app_postRight">
+          
+        </div>
       </div>
+      <InstagramEmbed
+      url="https://www.instagram.com/p/B_uf9dmAGPw/"
+      maxWidth={320}
+      hideCaption={false}
+      containerTagName="div"
+      protocol=""
+      injectScript
+      onLoading={() => {}}
+      onSuccess={() => {}}
+      onAfterRender={() => {}}
+      onFailure={() => {}}
+    />
       {user?.displayName ? (
         <ImageUpload username={user.displayName} />
       ) : (
