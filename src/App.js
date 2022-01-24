@@ -6,7 +6,7 @@ import "./App.css";
 import Post from "./Post";
 import { db, auth } from "./firebase";
 import { Input } from "@mui/material";
-import ImageUpload from "./ImageUpload"
+import ImageUpload from "./ImageUpload";
 
 function App() {
   const style = {
@@ -45,14 +45,16 @@ function App() {
   }, [user, username]);
 
   useEffect(() => {
-    db.collection("posts").onSnapshot((snapshot) => {
-      setPosts(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          post: doc.data(),
-        }))
-      );
-    });
+    db.collection("posts")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        setPosts(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            post: doc.data(),
+          }))
+        );
+      });
   }, []);
 
   const signUp = (event) => {
@@ -71,20 +73,14 @@ function App() {
     event.preventDefault();
 
     auth
-    .signInWithEmailAndPassword(email,password)
-    .catch((error) => alert(error.message));
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) => alert(error.message));
 
     setOpenSignIn(false);
-  }
+  };
 
   return (
     <div className="app">
-      {user?.displayName?(
-        <ImageUpload username={user.displayName}/>
-      ):(
-        <h3>Sorry ypou need to login to upload</h3>
-      )}
-      
       {/* {header} */}
       <Modal open={open} onClose={() => setOpen(false)}>
         <Box sx={style}>
@@ -148,7 +144,7 @@ function App() {
           </form>
         </Box>
       </Modal>
-      <div className="">
+      <div className="app_header">
         <img
           className="app_headerImage"
           src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogos-world.net%2Fwp-content%2Fuploads%2F2020%2F04%2FInstagram-Logo-2010-2013.png&f=1&nofb=1"
@@ -163,16 +159,22 @@ function App() {
           </div>
         )}
       </div>
-      <h1>Hello let's build instagram clone @_@</h1>
       {/* {posts} */}
-      {posts.map(({ id, post }) => (
-        <Post
-          key={id}
-          username={post.username}
-          caption={post.caption}
-          imageUrl={post.imageUrl}
-        />
-      ))}
+      <div className="app_posts">
+        {posts.map(({ id, post }) => (
+          <Post
+            key={id}
+            username={post.username}
+            caption={post.caption}
+            imageUrl={post.imageUrl}
+          />
+        ))}
+      </div>
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName} />
+      ) : (
+        <h3>Sorry you need to login to upload</h3>
+      )}
     </div>
   );
 }

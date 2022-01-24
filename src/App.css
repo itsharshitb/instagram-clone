@@ -11,11 +11,19 @@
   /* width: 200px; */
   height: 60px;
 }
+.app_posts{
+  padding: 20px;
+}
 .app_header{
   padding: 20px;
   border-bottom: solid lightgray 1px;
   background-color: white;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.app_headerImage{
+  object-fit: contain;
 }
 .app_signup{
   display: flex;
