@@ -7,7 +7,6 @@ import Post from "./Post";
 import { db, auth } from "./firebase";
 import { Input } from "@mui/material";
 import ImageUpload from "./ImageUpload";
-import InstagramEmbed from "react-instagram-embed";
 
 function App() {
   const style = {
@@ -146,7 +145,8 @@ function App() {
           </form>
         </Box>
       </Modal>
-      <div className="app_header">
+      <div className="header_wraper">
+        <div className="app_header">
         <img
           className="app_headerImage"
           src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogos-world.net%2Fwp-content%2Fuploads%2F2020%2F04%2FInstagram-Logo-2010-2013.png&f=1&nofb=1"
@@ -161,34 +161,22 @@ function App() {
           </div>
         )}
       </div>
+      </div>
       {/* {posts} */}
-      <div className="app_posts">
-        <div className="app_postLeft">
+      <div className="center">
+        <div className="app_posts">
           {posts.map(({ id, post }) => (
             <Post
               key={id}
+              postId={id}
+              user={user}
               username={post.username}
               caption={post.caption}
               imageUrl={post.imageUrl}
             />
           ))}
         </div>
-        <div className="app_postRight">
-          
-        </div>
       </div>
-      <InstagramEmbed
-      url="https://www.instagram.com/p/B_uf9dmAGPw/"
-      maxWidth={320}
-      hideCaption={false}
-      containerTagName="div"
-      protocol=""
-      injectScript
-      onLoading={() => {}}
-      onSuccess={() => {}}
-      onAfterRender={() => {}}
-      onFailure={() => {}}
-    />
       {user?.displayName ? (
         <ImageUpload username={user.displayName} />
       ) : (

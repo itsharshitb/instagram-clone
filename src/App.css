@@ -14,13 +14,26 @@
 .app_posts{
   padding: 20px;
 }
-.app_header{
-  padding: 20px;
-  border-bottom: solid lightgray 1px;
+.header_wraper{
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  max-width: 100%;
+  border-bottom: solid #d3d3d3 1px;
   background-color: white;
-  width: 100%;
+}
+.center{
+  margin: auto;
+  max-width: 650px;
+}
+.app_header{
+  padding: 10px 20px;
+  /* border-bottom: solid lightgray 1px; */
+  background-color: white;
   display: flex;
   justify-content: space-between;
+  margin: auto;
+  max-width: 1000px;
 }
 .app_headerImage{
   object-fit: contain;
