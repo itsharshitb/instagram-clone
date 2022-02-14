@@ -89,7 +89,7 @@ function App() {
             <center>
               <img
                 className="app_headerImage"
-                src="https://www.pngjoy.com/pngm/80/1718089_instagram-black-logo-transparent-background-instagram-logo-hd.png"
+                src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
                 alt=""
               />
             </center>

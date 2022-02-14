@@ -10,9 +10,13 @@
     border-top: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
 } 
+.like{
+    fill: #ed4956!important;
+    stroke: #ed4956!important;
+}
 .post_text{
     font-weight: normal;
-    padding: 20px;
+    padding: 0 20px;
 }
 .post_header{
     display: flex;
@@ -41,4 +45,18 @@
 }
 .post_comments{
     padding: 20px;
+    max-height: 50px;
+    overflow-y: auto;
+}
+.flex1{
+    flex:1;
+}
+svg{
+    padding: 0.5rem;
+    cursor: pointer;
+}
+.major_svg{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
 }
